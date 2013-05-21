@@ -1,0 +1,16 @@
+.bio, .inline-code, .inline-word { color: rgb(255, 216, 0); }
+.word { color: #27EB0A; }
+ul.no-bullets { list-style: none; }
+.reveal pre { box-shadow: none; }
+code.inline-code { 
+	background: rgba(34, 70, 88, 0.3);
+	font-size: 0.7em;
+	padding: 2px 10px;
+	border-radius: 5px;
+	border: 1px solid rgba(19, 41, 53, 0.3);
+}
+.reveal pre code { 
+	box-shadow: 0 0 6px rgba(0,0,0,.5);
+	background: rgba(4, 39, 34, 0.75);
+	padding: 20px;
+}

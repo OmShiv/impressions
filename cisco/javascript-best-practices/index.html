@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="generator" content="HTML Tidy for HTML5 (experimental) for Windows https://github.com/w3c/tidy-html5/tree/c63cc39">
+    <meta charset="utf-8">
+    <title>
+        JavaScript Best Practices
+    </title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/night.css" id="theme">
+    <link rel="stylesheet" href="css/main.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css"><!-- If the query includes 'print-pdf', use the PDF print sheet -->
+
+    <script>
+document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script><!--[if lt IE 9]>
+            <script src="lib/js/html5shiv.js"></script>
+            <![endif]-->
+  </head>
+  <body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-state="alert">
+          <h1>
+              JavaScript&nbsp;
+          </h1>
+          <h3 class="word"> Best Practices </h3>
+          <div>
+              <font><br/></font>
+          </div>
+          <div>
+            <br/>
+          </div>
+          <div class="bio">
+            <p class="word"> Om Shankar</font> </p>
+            <p class="word"> \m/ </p>
+            <p>Likes the <span class="word">Web</span> and believes moving it <span class="word">forward</span> </p>
+            <p>Himself doesn't know much, but never fails to speak ! </p>
+            <p>Has contributed to Github, some not-that useful&nbsp; <a href="http://omshiv.github.io/experiments/">Demos</a> </p>
+            <p>Loves <span class="word">HTML5</span> and <span class="word">CSS3</span> </p>
+            <p> <span class="word">JavaScript</span> freak ! </p>
+            <p> </p>
+            <p class="fragment" style="font-size: 70%; margin-top: 20px; color: #fff;"> PS: When no clue, press <kbd>right arrow</kbd> key. When bottom arrow glows, you can press <kbd>down arrow</kbd> key</p>
+          </div>
+        </section>
+
+        <section data-state="sunset">
+          <section>
+            <h2>
+                Introduction
+            </h2>
+            <div class="fragment">
+              <div>
+                  <span class="word">Browser</span>
+              </div>
+              <div> <br/> </div>
+              <div>
+                  -- Is a collection of <span class="inline-word">3 Layers</span>&nbsp;
+              </div>
+              <div>
+                  -- They are and should be <span class="inline-word">essentially ordered</span> as I am gonna say..
+              </div>
+            </div>
+
+            <div>
+                <br/>
+            </div>
+
+            <div class="fragment">
+              <div>
+                  <span class="word">JavaScript</span>
+              </div>
+              <div> <br/> </div>
+              <div>
+                  <div>-- forms the <span class="inline-word">Behavior</span> Layer</div>
+                  <div>-- all the <span class="inline-word">interactions</span> and <span class="inline-word">things</span> that a Human can do</div>
+                  <div>-- clicking, scrolling, typing, submitting a form, dragging stuff, moving the mouse out of curiosity, etc.</div>
+              </div>
+            </div>
+          </section>
+
+          <section data-state="sunset">
+            <p>Explained at a blog ... </p>
+            <a class="test" href="http://geekyogi.tumblr.com/post/38153961030/html5-in-and-out-part-1-the-beginning">
+              <img src="images/browser-layers.png" alt="Browser Layers">
+            </a>
+            <p class="fragment">Clicking on the image takes you there !</p>
+          </section>
+        </section>
+
+        <section>
+          <section data-state="soothe">
+            <h2> Beginner Level </h2>
+            <div class="fragment" style="text-align: left;">
+              <div style="text-align: center;"> <span class="word">Loading</span> </div>
+              <div> <br/> </div>
+              <div>-- Put Scripts at the bottom of the page, make external for caching, etc.</div>
+              <div>-- Try a JavaScript loader and download scripts parallely, or when required</div>
+              <div style="font-size: 70%; text-align: center;">For eg., this slideshow itself uses <a title="HeadJS - Load scripts and stylesheets on demand" href="http://headjs.com/">HeadJS</a></div>
+              <div>-- Minify scripts when loading on production. Join them to resuce HTTP requests</div>
+            </div>
+
+            <div class="fragment" style="text-align: left; margin-top: 20px;">
+              <div style="text-align: center;"> <span class="word">Coding</span> </div>
+              <div> <br/> </div>
+              <div>-- Use <code class="inline-code">===</code> to test Equality</div>
+              <div>-- Start functions and returns on the same line with the <code class="inline-code">{</code> </div>
+              <div>-- Do not use <code class="inline-code">eval()</code> and <code class="inline-code">setTimeOut</code>, <code class="inline-code">setInterval</code>, etc. for executing code</div>
+              <div>-- Do not use <code class="inline-code">try catch</code> in a loop</div>
+            </div>
+          </section>
+
+          <section data-state="soothe">
+            <h2>
+                Examples
+            </h2>
+            <pre>
+              <code class="javascript" data-trim>
+"5" == 5; // true
+"5" === 5 ; // false
+var a = 5; eval("a = 6"); setTimeOut("a = 5", 200); // bad
+
+/**** Performance  ****/
+
+// very bad 
+var object = ['foo', 'bar'], i;
+for (i = 0; i < object.length; i++) {
+try {
+  // do something that throws an exception
+} catch (e) {
+  // handle exception
+}
+}
+
+// Better:
+try {
+for (i = 0; i < object.length; i++) {
+    // do something
+}
+} catch (e) {
+// handle exception
+}
+              </code>
+            </pre>
+          </section>
+
+        </section> <!-- // Slide end -->
+
+        <section>
+          <section data-state="cobalt">
+            <h2> Intermediate Level </h2>
+            <div>
+              <div class="fragment">
+                <div>- Declare Variables outside of loops statement but inside of functions</div>
+                <div>- Maximize object resolution speed and minimize scope chain</div>
+                <div>- Take care with multiplications on floats, JavaScript is not for Rocket Science</div>
+                <div>- Use comma separated expressions to merge multiple var declarations</div>
+                <div>- Use Literals - avoid <code class="inline-code">new</code> Constructors for Objects, Arrays, Numbers, Strings.</div>
+                <div>- Alternative primitive ways are faster than helper functions and APIs</div>
+              </div>
+              <div> <br/></div>
+              <div class="fragment">
+                <div>- An expression is "true" if so is its return value. Same for "false"!</div>
+                <div>- Only false values are <code class="inline-code">0</code>, an empty string, <code class="inline-code">null</code>, <code class="inline-code">undefined</code> and <code class="inline-code">false</code> itself</div>
+                <div>- Check for return values and Truthiness / Falsiness of expressions</div>
+                <div>- Complex functions can be cached and used in a loop locally, for speed</div>
+                <div>- <code class="inline-code">Objects</code> are different than <code class="inline-code">Arrays</code></div>
+                <div>- There is nothing called <code class="inline-code">else if</code> in JavaScript, theoretically at least</div>
+                <div>- There is nothing called Associative Arrays in JavaScript - they are Objects</li>
+              </div>
+            </div>
+          </section>
+          <section data-state="cobalt">
+            <h2> Examples - 2.1</h2>
+            <pre>
+              <code class="javascript" data-trim>
+// Since local variables are first in this chain, they’re always faster than globals
+function LocalScope() {
+  var doc = document,
+      blah = doc.getElementById('myID'), 
+      blah2 = doc.getElementById('myID2'); // instead of document.getElementById
+}
+
+// Maximize object resolution speed and minimize scope chain
+var url = location.href; // slower
+var url = window.location.href; // faster
+
+// Literals and Constructors
+// Any Object even if a literal, can be assigned properties and methods
+
+var abc = new Number(5); // -- constructor way
+abc * 2; // 10, so its a number
+typeof abc; // "object", Hey, wait! what!
+abc.someProperty = "The Greate Gatsby is not so Great !"; // Dude, common!
+
+var def = 5;
+// JavaScript abstracts the constructor part and lets you feel it is a literal number
+typeof abc; // "number" !! 
+def * 10; // 50
+def.someProperty = "Big Bang Theory is a great show";
+// you can still add properties, coz literals are Objects anyways! Everything is!
+              </code>
+            </pre>
+          </section>
+          <section data-state="cobalt">
+            <h2> Examples - 2.2 </h2>
+            <pre>
+              <code class="javascript" data-trim>
+var hamburger = 8.20, 
+    fries = 2.10,
+    total = hamburger + fries;
+console.log(total); // Outputs 10.299999999999999
+
+hamburger = hamburger * 100, fries = fries * 100, total = hamburger + fries;
+total = total / 100; // Outputs 10.3
+
+// Alternative primitive/native ways are faster than helper functions and APIs
+var min = Math.min(a, b);
+arr.push(val);
+// faster
+var min = a < b ? a : b;
+arr[arr.length] = val;
+
+// Complex functions can be cached and used in a loop locally
+var d=35, y = 0;
+for (var i=0; i<1000; i++) { 
+  y += Math.sin(d)*10;
+} // Accessing Math Obj and then its "sin" method in a loop is slower
+
+var d = 55, y = 0, math_sind = Math.sin(d)*10;
+for (var i=0; i<1000; i++) {
+  y += math_sind; 
+}
+              </code>
+            </pre>
+          </section>
+
+          <section data-state="cobalt">
+            <h2> Examples - 2.3 </h2>
+            <pre>
+              <code class="javascript" data-trim>
+// If Else
+if (condition) {
+  // walk
+} else if (condition2) {
+  // dance 
+} else {
+  // sing
+}
+// Above is same as:
+if (condition) {
+  // walk
+} else {
+  if (condition2) {
+    // dance 
+  } else {
+    // sing
+  }
+}
+
+// Truthiness Falsiness
+2 || "hello world" || 0 || false || -1 || undefined; // A true expression
+// When we use || to join, the return value is first true or last false value (if all false)
+
+5 && true && undefined && true && "Hello world" && 10.2; // False expression, when using &&
+// Return value is first false or last true (if all true). Hence, the value of above is undefined
+               </code>
+            </pre>
+          </section>
+
+          <section data-state="cobalt">
+            <h2> Examples - 2.4 </h2>
+            <pre>
+              <code class="javascript" data-trim>
+// !Associative arrays
+
+abc = {
+  0: 1, 
+  someProperty: false,
+  10: "Some Random String",
+  true: 42
+}
+abc.someProperty; // false
+abc['someProperty']; // false, but this does not make it associative array
+// When we use square brackets [], the content inside is evaluated
+
+// [] are only for that purpose
+var number = 10;
+abc[number]; // "Some Random String" , notice the absence of quotes around number
+abc[ 1 > 0 ]; // 42, Surprise !
+
+// As seen previously, you can add properties to almost anything
+var someNumber = 10;
+someNumber.someProperty = 20;
+someNumber['someOtherProperty'] = 30;
+
+// does this mean someNumber is an associative array? No !
+// So go ahead and kick those people who want associative arrays !
+              </code>
+            </pre>
+          </section>
+
+        </section> <!-- // Slide end -->
+
+        <section>
+          <section data-state="lila">
+              <h2>
+                  Advanced Level
+              </h2>
+              <div>- Take care of <span class="word">Memory hoisting</span></div>
+              <div>- <span class="word">Memoization</span> - Optimize function for dynamic programming </div>
+              <div>- Optimize DOM manipulation code to avoid <a href="https://developer.mozilla.org/en/docs/Notes_on_HTML_Reflow">Reflows</a></div>
+              <div>- Avoid <code class="inline-code">for-in</code> in performance-critical functions </div>
+              <div>- Understand <span class="word">Callbacks</span> and <span class="word">Asynchronous</span> programming</div>
+              <div>- Use SingleTon constructors when you want only one instance throughout</div>
+              <div>- Use <code class="inline-code">call</code> and <code class="inline-code">apply</code> for functions to change their context effectively</div>
+              <div>- Use <code class="inline-code">hasOwnProperty</code> to check if the property is Object's own</div>
+          </section>
+          <section data-state="lila">
+            <h2>
+                Examples - 3.1
+            </h2>
+            <pre>
+              <code class="javascript" data-trim>
+// Hoisting concept
+alert(abc);
+var abc = 'some string';
+// is same as:
+var abc;
+alert(abc);
+abc = 'some string'; // And thats why you do *get* an "alert", but it says "undefined"
+
+// More
+var n = 1;
+function printSomething() {
+    console.log(n);
+    var n = 2;
+    console.log(n);
+}
+printSomething();
+// undefined
+// 2
+
+// for the same reason, this works
+abc();
+function abc() { ... }
+// But this doesn't
+abc();
+var abc = function() { ... }  // TypeError: undefined is not a function
+              </code>
+            </pre>
+          </section>
+
+          <section data-state="lila">
+            <h2>
+                Examples - 3.2
+            </h2>
+            <pre>
+              <code class="javascript" data-trim>
+// Memoization
+// caching the return value of the function for already calculated values of n
+var fibonacci = (function() {
+  var memo = {};
+  function f(n) {
+    var value;
+    if (n in memo) {
+      value = memo[n];
+    } else {
+      if (n === 0 || n === 1)
+        value = n;
+      else
+        value = f(n - 1) + f(n - 2);
+      memo[n] = value;
+    }
+    return value;
+  }
+  return f;
+})();
+              </code>
+            </pre>
+          </section>
+          <section data-state="lila">
+            <h2>
+                Examples - 3.3
+            </h2>
+            <pre>
+              <code class="javascript" data-trim>
+var mySingleton = (function () {
+  var instance;
+  function init() {
+    var privateVariable = "Im a private";
+    var privateRandomNumber = Math.random();
+    return {
+      publicMethod: function () {
+        console.log( "The public can see me!" );
+      },
+      publicProperty: "I am also public"
+    };
+  };
+  return {
+    getInstance: function () {
+      if ( !instance ) {
+        instance = init();
+      }
+      return instance;
+    }
+  };
+})();
+
+var instanceOne = mySingleton.getInstance(), 
+    instanceTwo = mySingleton.getInstance();
+instanceOne.publicMethod(); // is same as calling instanceTwo.publicMethod()
+            </code>
+          </pre>
+          </section>
+        </section> <!-- // Slide end -->
+
+        <section>
+          <h2>Super Level</h2>
+          <div> Start loving JavaScript, put your hands on </div>
+          <div> Enlighten yourself and other JS Devs ! </div>
+          <div> <br/> </div>
+          <div> Links: </div>
+          <div> <br/> </div>
+          <div>
+            <div>
+              <ul>
+                <li><a href="http://geekyogi.tumblr.com/post/47527187648/javascript-basics-objects-constructors-and-property">JavaScript Basics - Objects Constructors & Property Checking</a></li>
+                <li> Nicholas C Zakas, my fav guy on JS - <a href="http://www.nczonline.net/blog/2009/01/13/speed-up-your-javascript-part-1/">Speed up your JavasCript</a> </li>
+                <li> Dev.Opera.com - <a href="http://dev.opera.com/articles/view/efficient-javascript">Efficient Javascript</a> </li>
+                <li> <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Introduction_to_Object-Oriented_JavaScript">MDN - Introduction to Object Oriented JavaScript</a> </li>
+                <li> JavaScript Performance comparisons - <a href="http://jsperf.com">JS Perf</a> & <a href="http://jsperf.com/fragment-vs-appendchild-vs-innerhtml/6">Example</a></li>
+                <li> Google Developers - <a href="https://developers.google.com/speed/articles/reflow">Minimizing Browser Reflow</a> </li>
+                <li> Google Developers - <a href="https://developers.google.com/speed/articles/reflowhttps://developers.google.com/speed/articles/optimizing-javascript">Optimizing JavaScript code</a> </li>
+                <li> Lint your code - <a href="http://www.jslint.com">JS Lint</a> </li>
+              </ul>
+            </div>
+          </div>
+          <div> <br/> </div>
+          <div class="inline-word"> Happy JavaScript-ing, </div>
+          <div> <br/> </div>
+          <div style="font-size: 70%;"> Yours Truly, </div>
+          <div class="word"> Om Shankar </div>
+          <div style="font-size: 70%; margin-top: 20px;"> Thanks !</div>
+        </section> <!-- // Slide end -->
+
+      </div>
+    </div>
+<script src="lib/js/head.min.js"></script> 
+<script src="js/reveal.min.js"></script> 
+<script>
+
+  Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  center: true,
+  rollingLinks: false,
+
+  theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+  transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+  ]
+  });
+
+</script>
+  </body>
+</html>
