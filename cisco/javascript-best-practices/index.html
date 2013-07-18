@@ -190,7 +190,7 @@ var url = location.href; // slower
 var url = window.location.href; // faster
 
 // Literals and Constructors
-// Any Object even if a literal, can be assigned properties and methods
+// Any Object can be assigned properties and methods
 
 var abc = new Number(5); // -- constructor way
 abc * 2; // 10, so its a number
@@ -198,11 +198,11 @@ typeof abc; // "object", Hey, wait! what!
 abc.someProperty = "The Greate Gatsby is not so Great !"; // Dude, common!
 
 var def = 5;
-// JavaScript abstracts the constructor part and lets you feel it is a literal number
+// def has almost all the properties that abc does. Both are Numbers
+// However, JavaScript abstracts the constructor and makes def read-only
 typeof abc; // "number" !! 
 def * 10; // 50
-def.someProperty = "Big Bang Theory is a great show";
-// you can still add properties, coz literals are Objects anyways! Everything is!
+def.someProperty = "Big Bang Theory is a great show"; // won't work
               </code>
             </pre>
           </section>
