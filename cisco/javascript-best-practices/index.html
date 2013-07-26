@@ -35,16 +35,18 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
           <div>
             <br/>
           </div>
-          <div class="bio">
-            <p class="word"> Om Shankar</font> </p>
-            <p class="word"> \m/ </p>
-            <p>Likes the <span class="word">Web</span> and believes moving it <span class="word">forward</span> </p>
-            <p>Himself doesn't know much, but never fails to speak ! </p>
-            <p>Has contributed to Github, some not-that useful&nbsp; <a href="http://omshiv.github.io/experiments/">Demos</a> </p>
-            <p>Loves <span class="word">HTML5</span> and <span class="word">CSS3</span> </p>
-            <p> <span class="word">JavaScript</span> freak ! </p>
-            <p> </p>
-            <p class="fragment" style="font-size: 70%; margin-top: 20px; color: #fff;"> PS: When no clue, press <kbd>right arrow</kbd> key. When bottom arrow glows, you can press <kbd>down arrow</kbd> key</p>
+          <div class="bio" style="font-size: 70%;">
+            <p class="word" style="font-size: 2em;"> Om Shankar</font> </p>
+            <p>-- Likes the <span class="word">Web</span> and believes moving it <span class="word">forward</span> </p>
+            <p>-- Doesn't know much, but never fails to speak ! </p>
+            <p>-- Have written Articles for magazines and blogs</p>
+            <p>-- Built awesome HTML5 Apps in Webkit at Adobe</p>
+            <p>-- Built performance driven modern client-side and web at Amazon</p>
+            <p>-- Pushed other insignificant little contributions to <a href="http://github.com/OmShiv/">Github</a></p>
+            <p>-- Building a <a href="https://github.com/OmShiv/ice-breaker">Next-gen collaboration system</a> with WebRTC and Node</p>
+            <p>-- Loves <span class="word">HTML5</span> and <span class="word">CSS3</span> </p>
+            <p>-- <span class="word">JavaScript</span> freak ! </p>
+            <p class="fragment" style="font-size: 90%; margin-top: 20px; color: #fff;"> Press <kbd>right arrow</kbd> key. When bottom arrow glows, you can press <kbd>down arrow</kbd> key</p>
           </div>
         </section>
 
@@ -124,25 +126,25 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
 "5" === 5 ; // false
 var a = 5; eval("a = 6"); setTimeOut("a = 5", 200); // bad
 
-/**** Performance  ****/
+/** Performance  ***/
 
-// very bad 
+// very bad if you need such code
 var object = ['foo', 'bar'], i;
 for (i = 0; i < object.length; i++) {
-try {
-  // do something that throws an exception
-} catch (e) {
-  // handle exception
-}
+  try {
+    // do something that throws an exception
+  } catch (e) {
+    // handle exception
+  }
 }
 
-// Better:
+// look for a purpopseful refactoring:
 try {
-for (i = 0; i < object.length; i++) {
+  for (i = 0; i < object.length; i++) {
     // do something
-}
+  }
 } catch (e) {
-// handle exception
+  // handle exception
 }
               </code>
             </pre>
@@ -178,31 +180,31 @@ for (i = 0; i < object.length; i++) {
             <h2> Examples - 2.1</h2>
             <pre>
               <code class="javascript" data-trim>
-// Since local variables are first in this chain, they’re always faster than globals
-function LocalScope() {
-  var doc = document,
-      blah = doc.getElementById('myID'), 
+/** Since local variables are first in the chain, they’re always faster than globals **/
+function LocalScope(doc) {
+  // assuming doc was passed as window.document
+  var blah = doc.getElementById('myID'), 
       blah2 = doc.getElementById('myID2'); // instead of document.getElementById
 }
 
-// Maximize object resolution speed and minimize scope chain
-var url = location.href; // slower
-var url = window.location.href; // faster
+/** Maximize object resolution speed and minimize scope chain **/
+var url = location.href; /* slower than */ var url = window.location.href;
 
-// Literals and Constructors
-// Any Object can be assigned properties and methods
+// Disclaimer - Webkit and other engines optimize this beautifully
 
-var abc = new Number(5); // -- constructor way
-abc * 2; // 10, so its a number
-typeof abc; // "object", Hey, wait! what!
-abc.someProperty = "The Greate Gatsby is not so Great !"; // Dude, common!
+/** Literals and Constructors **/
 
-var def = 5;
-// def has almost all the properties that abc does. Both are Numbers
-// However, JavaScript abstracts the constructor and makes def read-only
-typeof abc; // "number" !! 
-def * 10; // 50
-def.someProperty = "Big Bang Theory is a great show"; // won't work
+var super = new Number(5); // -- constructor way
+super * 2; // 10, so its a number
+typeof super; // "object", Hey, wait! what!
+super.someProperty = "Man of Steel"; // Dude, common!
+
+var bat = 5;
+// bat has almost all the properties that super does. Both are Numbers
+typeof bat; // "number" !! 
+bat * 10; // 50
+// However, JavaScript abstracts the constructor and makes bat read-only
+bat.someProperty = "can use Super powers"; // doesn't work - read only
               </code>
             </pre>
           </section>
@@ -218,14 +220,14 @@ console.log(total); // Outputs 10.299999999999999
 hamburger = hamburger * 100, fries = fries * 100, total = hamburger + fries;
 total = total / 100; // Outputs 10.3
 
-// Alternative primitive/native ways are faster than helper functions and APIs
+/** Alternative primitive/native ways are faster than helper functions and APIs **/
 var min = Math.min(a, b);
 arr.push(val);
 // faster
 var min = a < b ? a : b;
 arr[arr.length] = val;
 
-// Complex functions can be cached and used in a loop locally
+/** Complex functions can be cached and used in a loop locally **/
 var d=35, y = 0;
 for (var i=0; i<1000; i++) { 
   y += Math.sin(d)*10;
@@ -243,7 +245,7 @@ for (var i=0; i<1000; i++) {
             <h2> Examples - 2.3 </h2>
             <pre>
               <code class="javascript" data-trim>
-// If Else
+/** If Else **/
 if (condition) {
   // walk
 } else if (condition2) {
@@ -262,12 +264,12 @@ if (condition) {
   }
 }
 
-// Truthiness Falsiness
-2 || "hello world" || 0 || false || -1 || undefined; // A true expression
+/** Truthiness && !Falsiness **/
+
+2 || "hello world" || 0 || false || -1 || undefined; 
+// A true expression
 // When we use || to join, the return value is first true or last false value (if all false)
 
-5 && true && undefined && true && "Hello world" && 10.2; // False expression, when using &&
-// Return value is first false or last true (if all true). Hence, the value of above is undefined
                </code>
             </pre>
           </section>
@@ -276,7 +278,12 @@ if (condition) {
             <h2> Examples - 2.4 </h2>
             <pre>
               <code class="javascript" data-trim>
-// !Associative arrays
+5 && true && undefined && true && "Hello world" && 10.2; 
+// False expression when using &&
+// Return value is first false or last true (if all true). 
+// Hence, the value of above is undefined
+
+/** ! Associative arrays **/
 
 abc = {
   0: 1, 
@@ -288,18 +295,11 @@ abc.someProperty; // false
 abc['someProperty']; // false, but this does not make it associative array
 // When we use square brackets [], the content inside is evaluated
 
-// [] are only for that purpose
+// [] are for that purpose alone (not associativity, huh)
 var number = 10;
 abc[number]; // "Some Random String" , notice the absence of quotes around number
 abc[ 1 > 0 ]; // 42, Surprise !
 
-// As seen previously, you can add properties to almost anything
-var someNumber = 10;
-someNumber.someProperty = 20;
-someNumber['someOtherProperty'] = 30;
-
-// does this mean someNumber is an associative array? No !
-// So go ahead and kick those people who want associative arrays !
               </code>
             </pre>
           </section>
@@ -326,15 +326,15 @@ someNumber['someOtherProperty'] = 30;
             </h2>
             <pre>
               <code class="javascript" data-trim>
-// Hoisting concept
+/** Memory Hoisitng - pulling of declarations and definitions at top **/
 alert(abc);
 var abc = 'some string';
 // is same as:
 var abc;
 alert(abc);
-abc = 'some string'; // And thats why you do *get* an "alert", but it says "undefined"
+abc = 'some string'; // And thats why you do get an "alert", but it says "undefined"
 
-// More
+/** Hoisting inside scopes is exclusive to the scope **/
 var n = 1;
 function printSomething() {
     console.log(n);
@@ -345,7 +345,7 @@ printSomething();
 // undefined
 // 2
 
-// for the same reason, this works
+// its due to hoisting that this works
 abc();
 function abc() { ... }
 // But this doesn't
@@ -361,7 +361,7 @@ var abc = function() { ... }  // TypeError: undefined is not a function
             </h2>
             <pre>
               <code class="javascript" data-trim>
-// Memoization
+/** Memoization **/
 // caching the return value of the function for already calculated values of n
 var fibonacci = (function() {
   var memo = {};
@@ -421,23 +421,23 @@ instanceOne.publicMethod(); // is same as calling instanceTwo.publicMethod()
 
         <section>
           <h2>Super Level</h2>
-          <div> Start loving JavaScript, put your hands on </div>
-          <div> Enlighten yourself and other JS Devs ! </div>
+          <div> Start loving JavaScript, explore, innovate, enlighten! </div>
+          <div> Follow and then Lead </div>
           <div> <br/> </div>
-          <div> Links: </div>
+          <div> People and Links </div>
           <div> <br/> </div>
           <div>
-            <div>
-              <ul>
-                <li> JavaScript Basics - <a href="http://geekyogi.tumblr.com/post/47527187648/javascript-basics-objects-constructors-and-property">Objects Constructors & Property Checking</a></li>
-                <li> Nicholas C Zakas, my fav guy on JS - <a href="http://www.nczonline.net/blog/2009/01/13/speed-up-your-javascript-part-1/">Speed up your JavaScript</a> </li>
-                <li> Dev.Opera.com - <a href="http://dev.opera.com/articles/view/efficient-javascript">Efficient JavaScript</a> </li>
-                <li> MDN - <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Introduction_to_Object-Oriented_JavaScript">Introduction to Object Oriented JavaScript</a> </li>
-                <li> JavaScript Performance comparisons - <a href="http://jsperf.com">JS Perf</a> & <a href="http://jsperf.com/fragment-vs-appendchild-vs-innerhtml/6">Example</a></li>
-                <li> Google Developers - <a href="https://developers.google.com/speed/articles/reflow">Minimizing Browser Reflow</a> </li>
-                <li> Google Developers - <a href="https://developers.google.com/speed/articles/reflowhttps://developers.google.com/speed/articles/optimizing-javascript">Optimizing JavaScript code</a> </li>
-                <li> Lint your code - <a href="http://www.jslint.com">JS Lint</a> </li>
-              </ul>
+            <div class="conclusion" style="font-size: 80%; text-align: center;">
+              <div>-- Addy Osmani, my fav guy 1 on JS - <a href="http://addyosmani.com/resources/essentialjsdesignpatterns/book/">Learning JS Design Patterns</a> </div>
+              <div>-- Nicholas C Zakas, my fav guy 2 on JS - <a href="http://www.nczonline.net/blog/2009/01/13/speed-up-your-javascript-part-1/">Speed up your JavaScript</a> </div>
+              <div>-- Stoyan Stefanov, my fav guy 3 on JS - <a href="http://www.amazon.com/Object-Oriented-JavaScript-ebook/dp/B0057UNEJC/">OO JavaScript</a> </div>
+              <div>-- Dev.Opera.com - <a href="http://dev.opera.com/articles/view/efficient-javascript">Efficient JavaScript</a> </div>
+              <div>-- MDN - <a href="https://developer.mozilla.org/en-US/docs/JavaScript/Introduction_to_Object-Oriented_JavaScript">Introduction to Object Oriented JavaScript</a> </div>
+              <div>-- JavaScript Performance comparisons - <a href="http://jsperf.com">JS Perf</a> & <a href="http://jsperf.com/fragment-vs-appendchild-vs-innerhtml/6">Example</a </div>
+              <div>-- Google Developers - <a href="https://developers.google.com/speed/articles/reflow">Minimizing Browser Reflow</a> </div>
+              <div>-- Google Developers - <a href="https://developers.google.com/speed/articles/reflowhttps://developers.google.com/speed/articles/optimizing-javascript">Optimizing JavaScript code</a> </div>
+              <div>-- JavaScript Basics - my own blog - <a href="http://geekyogi.tumblr.com/post/47527187648/javascript-basics-objects-constructors-and-property">Objects Constructors & Property Checking</a> </div>
+              <div>-- Lint your code - <a href="http://www.jslint.com">JS Lint</a> </div>
             </div>
           </div>
           <div> <br/> </div>
@@ -445,7 +445,7 @@ instanceOne.publicMethod(); // is same as calling instanceTwo.publicMethod()
           <div> <br/> </div>
           <div style="font-size: 70%;"> Yours Truly, </div>
           <div class="word"> Om Shankar </div>
-          <div style="font-size: 70%; margin-top: 20px;"> Thanks !</div>
+          <div style="font-size: 50%; margin-top: 10px;">JavaScript & HTML5 Guy - Adobe Systems.</div>
         </section> <!-- // Slide end -->
 
       </div>
@@ -455,24 +455,24 @@ instanceOne.publicMethod(); // is same as calling instanceTwo.publicMethod()
 <script>
 
   Reveal.initialize({
-  controls: true,
-  progress: true,
-  history: true,
-  center: true,
-  rollingLinks: false,
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
+    rollingLinks: false,
 
-  theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-  transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
 
-  // Optional libraries used to extend on reveal.js
-  dependencies: [
-    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-  ]
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
   });
 
 </script>
