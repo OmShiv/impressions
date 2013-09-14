@@ -23,11 +23,12 @@ body {
 
 .reveal {
   font-family: "Roboto", sans-serif;
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 200;
   letter-spacing: -0.02em;
   color: #333333; }
-
+ .reveal .increased { font-size: 34px; }
+ .reveal .increased-plus { font-size: 38px; }
 ::selection {
   color: white;
   background: #134674;

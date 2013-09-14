@@ -4,11 +4,11 @@ var SlideShowApp = (function(doc, win) {
 
     var stateArray = [
             'default',
+            'whiteout',
             'alert',
             'orange',
             'soothe',
             'blackout',
-            'whiteout',
             'cobalt',
             'mint',
             'submerge',
@@ -26,6 +26,7 @@ var SlideShowApp = (function(doc, win) {
 
     function hoverEffectFirstSlide() {
         Reveal.addEventListener( 'ready', function( event ) {
+            if (event.indexh != 0) return false;
             var domBase = event.currentSlide.querySelector('#hero-logo');
                 childImages = Array.prototype.slice.call(domBase.children),
                 effectCounter = 0;

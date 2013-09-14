@@ -27,6 +27,7 @@ code.inline-code {
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.53);
     color: #fff;
 }
+.inline-code.code-header { font-size: 110%; }
 .reveal pre code { 
     box-shadow: 0 0 6px rgba(0,0,0,.5);
     background: rgba(4, 39, 34, 0.75);
@@ -37,8 +38,11 @@ code.inline-code {
 .reveal section .plain-image img, 
 .reveal section img.plain-image { border: none; box-shadow: none; }
 
+.reveal section .plain-image.browser img { height: 200px; }
+
 .reveal .pointers { width: 90%; }
 .reveal .pointers li { margin-top: 0.4em; }
+.reveal .pointers.increased-plus li { margin-top: 0.6em; }
 .reveal .pointers li a {
     font-family: "Roboto Slab", sans-serif;
     font-size: 1em;
