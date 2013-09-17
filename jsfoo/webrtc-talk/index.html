@@ -3,23 +3,27 @@
   <head>
     <meta charset="utf-8">
     <title>
-      Real Time P2P Collaboration | HTML5, Javascript & CSS
+      Real Time P2P Collaboration | HTML5, Javascript &amp; CSS
     </title>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" href="css/reveal.min.css">
+
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
+    <link rel="stylesheet" href="../../base/css/reveal.min.css">
+    <link rel="stylesheet" href="../../base/lib/css/zenburn.css" id="stylesheet">
+
+    <!-- Slideshow Specific -->
     <link rel="stylesheet" href="css/theme/sky-custom.css" id="theme">
     <link rel="stylesheet" href="css/main.css" id="theme">
     <!-- <link rel="stylesheet" href="lib/css/github.css"> -->
-    <link rel="stylesheet" href="lib/css/zenburn.css" id="stylesheet">
     <!-- If the query includes 'print-pdf', use the PDF print sheet -->
 
     <script>
-document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+document.write( '<link rel="stylesheet" href="../../base/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
     </script>
 <!--[if lt IE 9]>
-    <script src="lib/js/html5shiv.js"></script>
+    <script src="../../base/lib/js/html5shiv.js"></script>
 <![endif]-->
   </head>
   <body>
@@ -121,21 +125,15 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
             <h3>You tell me right now!!</h3>
           </section>
 
+          <section data-state="default" data-background="images/html5-topper.png">
+            <h1 class="fragment">The POWER</h1>
+          </section>
+
           <!-- HTML5 Features -->
-          <section data-state="whiteout" data-background="images/html5-topper.png">
-            <div class="block-break">&nbsp;</div>
+          <section data-state="whiteout">
             <div class="block-break">&nbsp;</div>
             <div class="plain-image fragment">
-              <img src="images/semantics.png" alt="HTML5 Features">
-              <img src="images/offline.png" alt="HTML5 Features">
-              <img src="images/device.png" alt="HTML5 Features">
-              <img src="images/connect.png" alt="HTML5 Features">
-            </div>
-            <div class="plain-image fragment">
-              <img src="images/multi.png" alt="HTML5 Features">
-              <img src="images/3d.png" alt="HTML5 Features">
-              <img src="images/performance.png" alt="HTML5 Features">
-              <img src="images/css3.png" alt="HTML5 Features">
+              <img src="images/html5-areas.png" alt="HTML5 Features">
             </div>
 
             <!-- <div class="fragment word" style="text-shadow: none;">
@@ -165,7 +163,7 @@ document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.se
 
           <section data-state="whiteout">
             <div>
-              <img src="images/webrtc2.png" alt="WebRTC Logo 2">
+              <img src="images/webrtc2.png" class="scalable" alt="WebRTC Logo 2">
             </div>
 
             <h3 class="word">Web Real Time Communication</h3>
@@ -250,6 +248,14 @@ function errorCallback(error) {
             </div>
           </section>
 
+          <section data-state="alert">
+            <div>
+              <a href="http://webcamtoy.com/">
+                <img src="images/webcamtoy.png" class="plain-image" style="background: transparent;" alt="Webcam toy">
+              </a>
+            </div>
+          </section>
+
           <section data-state="whiteout">
             <h2>Communicating Streams</h2>
             <div class="code-header"><code style="font-size: 110%;" class="inline-code">RTCPeerconnection</code> </div>
@@ -281,6 +287,13 @@ peerCon.createOffer(IceCandidate); peerCon.createAnswer(...)
                   <span> - Metadata per SDP</span>
                 </li>
               </ul>
+            </div>
+          </section>
+
+          <section data-state="alert">
+            <h2>ICE Breaker</h2>
+            <div>
+              <a href="http://webrtc-html5-app-9082.onmodulus.net/"><img src="images/ICE-breaker.png" class="scalable" alt="ICE Breaker"></a>
             </div>
           </section>
 
@@ -317,6 +330,13 @@ XmitterChannel.send('Hello WebRTC');
             </div>
           </section>
 
+          <section data-state="alert">
+            <h2>ShareFest</h2>
+            <div>
+              <a href="https://www.sharefest.me/"><img src="images/sharefest.jpg" class="scalable" alt="Sharefest"></a>
+            </div>
+          </section>
+
         </section> <!-- // Slide 3 -->
 
         <!-- Slide 4 -->
@@ -326,7 +346,7 @@ XmitterChannel.send('Hello WebRTC');
             <h2>WebRTC &amp; the Web</h2>
             <h4>Architecture</h4>
             <div>
-              <img src="images/webrtcArchitecture.png" alt="Connectivity" style="padding: 10px;">
+              <img src="images/webrtcArchitecture.png" class="scalable" alt="Connectivity" style="padding: 10px;">
             </div>
           </section>
 
@@ -341,7 +361,7 @@ XmitterChannel.send('Hello WebRTC');
           <section data-state="cobalt">
             <h2>WebRTC: No Firewalls, STUN or TURN</h2>
             <figure>
-              <img src="images/ideal-case.png" alt="Ideal Case" />
+              <img src="images/ideal-case-ed.png" class="scalable" alt="Ideal Case" />
               <figcaption>Courtesy: WebRTC - Google IO; and Self Modified</figcaption>
             </figure>
           </section>
@@ -349,7 +369,7 @@ XmitterChannel.send('Hello WebRTC');
           <section data-state="cobalt">
             <h2>WebRTC: Behind NAT Firewall - STUN</h2>
             <figure>
-              <img src="images/behind-nat.png" alt="Behind NAT" />
+              <img src="images/behind-nat.png" class="scalable" alt="Behind NAT" />
               <img src="images/use-stun.png" alt="Use STUN" alt="Use Stun" class="fragment plain-image" style="position: absolute; left: 12.8em; bottom: 2.2em;" />
               <figcaption>Courtesy: WebRTC - Google IO</figcaption>
             </figure>
@@ -358,14 +378,14 @@ XmitterChannel.send('Hello WebRTC');
           <section data-state="cobalt">
             <h2>WebRTC: STUN Fails, try TURN</h2>
             <figure>
-              <img src="images/turn.png" alt="Using TURN" />
+              <img src="images/turn.png" class="scalable" alt="Using TURN" />
               <figcaption>Courtesy: WebRTC - Google IO</figcaption>
             </figure>
           </section>
 
           <section data-state="alert">
             <div>
-              <img src="images/sj.png" alt="Tell me">
+              <img src="images/sj.png" class="scalable" alt="Tell me">
             </div>
             <h3>What is <span class="word">STUN</span>, <span class="word">TURN</span>, <span class="word">SDP</span> and <span class="word">ICE</span>?</h3>
             <h3>You tell me! You tell me right now!!</h3>
@@ -417,8 +437,17 @@ XmitterChannel.send('Hello WebRTC');
 
           <!-- Diagram -->
           <section data-state="whiteout">
-            <h2>The Exchange</h2>
-            <img src="images/webrtc-complete-diagram.png" alt="Flow" />
+            <h2>The Exchange - STUN, TURN</h2>
+            <img src="images/webrtc-stun.png" class="scalable" alt="STUN" />
+            <img src="images/webrtc-turn.png" class="scalable" alt="TURN" style="margin-left: 1em;" />
+          </section>
+          <section data-state="whiteout">
+            <h2>The Exchange - FLOW</h2>
+            <img src="images/exchange-complete-diagram.png" class="scalable" alt="Flow" />
+          </section>
+          <section data-state="whiteout">
+            <h2>The Exchange - Simple</h2>
+            <img src="images/exchange-simple-diagram.png" class="plain-image scalable" alt="Simple Flow" />
           </section>
 
         </section> <!-- // Slide 5 -->
@@ -431,7 +460,7 @@ XmitterChannel.send('Hello WebRTC');
             <h2>ICE Breaker</h2>
             <h4>JSfoo Demo APP</h4>
             <div>
-              <a href="http://omshiv.github.io/ice-breaker/"><img src="images/ICE-breaker.png" alt="ICE Breaker"></a>
+              <a href="http://webrtc-html5-app-9082.onmodulus.net/"><img src="images/ICE-breaker.png" class="scalable" alt="ICE Breaker"></a>
             </div>
           </section>
 
@@ -494,8 +523,8 @@ XmitterChannel.send('Hello WebRTC');
 
     <div id="state-changer">State</div>
 
-<script src="lib/js/head.min.js"></script> 
-<script src="js/reveal.min.js"></script> 
+<script src="../../base/lib/js/head.min.js"></script> 
+<script src="../../base/js/reveal.min.js"></script> 
 <script>
 
   Reveal.initialize({
@@ -512,12 +541,12 @@ XmitterChannel.send('Hello WebRTC');
 
   // Optional libraries used to extend on reveal.js
   dependencies: [
-    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    { src: '../../base/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+    { src: '../../base/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: '../../base/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+    { src: '../../base/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+    { src: '../../base/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+    { src: '../../base/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
   ]
   });
 

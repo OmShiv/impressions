@@ -40,22 +40,10 @@ var SlideShowApp = (function(doc, win) {
         });
     }
 
-    function attachImageScale() {
-        var scalableImages = doc.querySelectorAll('img.scalable')
-
-        Array.prototype.slice.call(scalableImages, 0).forEach(function(thisImage){
-            thisImage.addEventListener('click', function(){
-                var method = thisImage.classList.contains('scaled') ? 'remove' : 'add';
-                thisImage.classList[method]('scaled');
-            });
-        });
-    }
-
     return {
         init: function() {
             stateChanger();
             hoverEffectFirstSlide();
-            attachImageScale();
         }
     }
 }(window.document, window));
