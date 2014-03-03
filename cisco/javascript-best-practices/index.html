@@ -196,8 +196,8 @@ var url = location.href; /* slower than */ var url = window.location.href;
 
 var super = new Number(5); // -- constructor way
 super * 2; // 10, so its a number
-typeof super; // "object", Hey, wait! what!
-super.someProperty = "Man of Steel"; // Dude, common!
+typeof super; // "object"
+super.someProperty = "Man of Steel"; // Works.
 
 var bat = 5;
 // bat has almost all the properties that super does. Both are Numbers
